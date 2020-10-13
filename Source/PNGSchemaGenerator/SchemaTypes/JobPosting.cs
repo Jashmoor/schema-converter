@@ -1,5 +1,6 @@
 ﻿namespace PNGSchemaGenerator.SchemaTypes
 {
+    using Newtonsoft.Json;
     using PNGSchemaGenerator.Utilities;
     using System;
     using System.Runtime.Serialization;
@@ -11,6 +12,7 @@
         public override string Type => "JobPosting";
 
         [DataMember(Name = "title", Order = 3)]
+        [JsonConverter(typeof(SchemaJsonConverter))]
         public OneOrMore<string> Title { get; set; }
 
         [DataMember(Name = "applicationContact", Order = 4)]

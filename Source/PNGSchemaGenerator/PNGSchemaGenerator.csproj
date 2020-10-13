@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <Authors>Joe Cashmore</Authors>
+    <Company>Pertemps</Company>
+    <Description>Generate and format Json/ld Schema for SEO</Description>
+    <PackageTags>SEO,Schema</PackageTags>
+    <RepositoryUrl>https://pertempsdevelopment.visualstudio.com/PNG-Packages/_git/PNG-SEO</RepositoryUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+
+</Project>

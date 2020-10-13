@@ -72,9 +72,9 @@
             HasValueA = itemsA?.Count > 0;
             HasValueB = itemsB?.Count > 0;
             HasValueC = itemsC?.Count > 0;
-            ValueA = itemsA == null ? default : (OneOrMore<T1>)itemsA;
-            ValueB = itemsB == null ? default : (OneOrMore<T2>)itemsB;
-            ValueC = itemsC == null ? default : (OneOrMore<T3>)itemsC;
+            ValueA = itemsA == null ? default(OneOrMore<T1>) : (OneOrMore<T1>)itemsA;
+            ValueB = itemsB == null ? default(OneOrMore<T2>) : (OneOrMore<T2>)itemsB;
+            ValueC = itemsC == null ? default(OneOrMore<T3>) : (OneOrMore<T3>)itemsC;
         }
 
         #endregion

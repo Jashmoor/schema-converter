@@ -98,10 +98,10 @@
             HasValueB = itemsB?.Count > 0;
             HasValueC = itemsC?.Count > 0;
             HasValueD = itemsD?.Count > 0;
-            ValueA = itemsA == null ? default : (OneOrMore<T1>)itemsA;
-            ValueB = itemsB == null ? default : (OneOrMore<T2>)itemsB;
-            ValueC = itemsC == null ? default : (OneOrMore<T3>)itemsC;
-            ValueD = itemsD == null ? default : (OneOrMore<T4>)itemsD;
+            ValueA = itemsA == null ? default(OneOrMore<T1>) : (OneOrMore<T1>)itemsA;
+            ValueB = itemsB == null ? default(OneOrMore<T2>) : (OneOrMore<T2>)itemsB;
+            ValueC = itemsC == null ? default(OneOrMore<T3>) : (OneOrMore<T3>)itemsC;
+            ValueD = itemsD == null ? default(OneOrMore<T4>) : (OneOrMore<T4>)itemsD;
         }
 
         #endregion

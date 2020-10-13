@@ -55,8 +55,8 @@
             }
             HasValueA = itemsA?.Count > 0;
             HasValueB = itemsB?.Count > 0;
-            ValueA = itemsA == null ? default : (OneOrMore<T1>)itemsA;
-            ValueB = itemsA == null ? default : (OneOrMore<T2>)itemsB;
+            ValueA = itemsA == null ? default(OneOrMore<T1>) : (OneOrMore<T1>)itemsA;
+            ValueB = itemsA == null ? default(OneOrMore<T2>) : (OneOrMore<T2>)itemsB;
         }
         #endregion
         public int Count => ValueA.Count + ValueB.Count;

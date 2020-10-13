@@ -11,7 +11,7 @@
         #region Constructor
         public OneOrMore(T item)
         {
-            if (item == null || (item is string itemString && string.IsNullOrWhiteSpace(itemString)))
+            if (item == null)
             {
                 Collection = null;
                 HasOne = false;

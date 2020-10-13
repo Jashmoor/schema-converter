@@ -47,7 +47,7 @@
         public static implicit operator OneOrMore<T>(T item) => new OneOrMore<T>(item);
         public static implicit operator OneOrMore<T>(T[] array) => new OneOrMore<T>(array);
         public static implicit operator OneOrMore<T>(List<T> list) => new OneOrMore<T>(list);
-        public static implicit operator T(OneOrMore<T> item) => item.FirstOrDefault();
+        public static implicit operator T(OneOrMore<T> item) => item.Collection.FirstOrDefault();
         public static implicit operator T[](OneOrMore<T> item) => item.ToArray();
         public static implicit operator List<T>(OneOrMore<T> item) => item.ToList();
 

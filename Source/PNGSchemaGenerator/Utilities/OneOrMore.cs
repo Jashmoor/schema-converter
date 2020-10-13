@@ -5,7 +5,7 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    public readonly struct OneOrMore<T>
+    public struct OneOrMore<T>
         : IReadOnlyCollection<T>, IEnumerable<T>, IValues
     {
         #region Constructor

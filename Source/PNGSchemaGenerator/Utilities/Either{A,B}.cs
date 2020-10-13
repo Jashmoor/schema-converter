@@ -5,21 +5,21 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    public readonly struct Either<T1, T2>
+    public struct Either<T1, T2>
         : IReadOnlyCollection<object>, IEnumerable<object>, IValues
     {
         #region Constructor
         public Either(OneOrMore<T1> value)
         {
             ValueA = value;
-            ValueB = default;
+            ValueB = default(OneOrMore<T2>);
             HasValueA = value.Count > 0;
             HasValueB = false;
         }
 
         public Either(OneOrMore<T2> value)
         {
-            ValueA = default;
+            ValueA = default(OneOrMore<T1>);
             ValueB = value;
             HasValueA = false;
             HasValueB = value.Count > 0;

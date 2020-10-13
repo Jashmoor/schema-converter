@@ -4,16 +4,16 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    public readonly struct Either<T1, T2, T3, T4>
+    public struct Either<T1, T2, T3, T4>
         : IReadOnlyCollection<object>, IEnumerable<object>, IValues
     {
         #region Constructor
         public Either(OneOrMore<T1> value)
         {
             ValueA = value;
-            ValueB = default;
-            ValueC = default;
-            ValueD = default;
+            ValueB = default(OneOrMore<T2>);
+            ValueC = default(OneOrMore<T3>);
+            ValueD = default(OneOrMore<T4>);
             HasValueA = value.Count > 0;
             HasValueB = false;
             HasValueC = false;
@@ -22,10 +22,10 @@
 
         public Either(OneOrMore<T2> value)
         {
-            ValueA = default;
+            ValueA = default(OneOrMore<T1>);
             ValueB = value;
-            ValueC = default;
-            ValueD = default;
+            ValueC = default(OneOrMore<T3>);
+            ValueD = default(OneOrMore<T4>);
             HasValueA = false;
             HasValueB = value.Count > 0;
             HasValueC = false;
@@ -34,10 +34,10 @@
 
         public Either(OneOrMore<T3> value)
         {
-            ValueA = default;
-            ValueB = default;
+            ValueA = default(OneOrMore<T1>);
+            ValueB = default(OneOrMore<T2>);
             ValueC = value;
-            ValueD = default;
+            ValueD = default(OneOrMore<T4>);
             HasValueA = false;
             HasValueB = false;
             HasValueC = value.Count > 0;
@@ -46,9 +46,9 @@
 
         public Either(OneOrMore<T4> value)
         {
-            ValueA = default;
-            ValueB = default;
-            ValueC = default;
+            ValueA = default(OneOrMore<T1>);
+            ValueB = default(OneOrMore<T2>);
+            ValueC = default(OneOrMore<T3>);
             ValueD = value;
             HasValueA = false;
             HasValueB = false;

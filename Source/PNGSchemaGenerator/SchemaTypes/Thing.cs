@@ -8,6 +8,7 @@
     using System.Runtime.Serialization;
 
     [DataContract]
+    [JsonConverter(typeof(SchemaJsonConverter))]
     public partial class Thing : JsonBaseObject
     {
         [DataMember(Name = "@type", Order = 1)]

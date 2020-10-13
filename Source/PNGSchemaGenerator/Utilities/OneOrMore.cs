@@ -13,13 +13,11 @@
         {
             if (item == null)
             {
-                Value = default(T);
                 Collection = null;
                 HasOne = false;
             }
             else
             {
-                Value = item;
                 Collection = null;
                 HasOne = true;
             }
@@ -37,31 +35,29 @@
 
         public OneOrMore(params T[] items)
         {
-            Value = default(T);
-            Collection = null;
+            Collection = items;
             HasOne = false;
-
-            if (items.Length == 1)
-            {
-                Value = items.FirstOrDefault();
-                HasOne = true;
-            }
-            if (items.Length > 1)
-            {
-                Collection = items;
-            }
         }
         #endregion
         private readonly T[] Collection;
-        private readonly T Value;
         public int Count => Collection?.Length ?? 0;
         public bool HasOne { get; }
         public bool HasMany => Collection?.Length > 1;
 
+        public object Value
+        {
+            get
+            {
+                if (HasOne)
+                    return Collection.FirstOrDefault();
+                return Collection;
+            }
+        }
+
         public static implicit operator OneOrMore<T>(T item) => new OneOrMore<T>(item);
         public static implicit operator OneOrMore<T>(T[] array) => new OneOrMore<T>(array);
         public static implicit operator OneOrMore<T>(List<T> list) => new OneOrMore<T>(list);
-        public static implicit operator T(OneOrMore<T> item) => item.Value == null ? default(T) : item.Value;
+        public static implicit operator T(OneOrMore<T> item) => item.FirstOrDefault();
         public static implicit operator T[](OneOrMore<T> item) => item.ToArray();
         public static implicit operator List<T>(OneOrMore<T> item) => item.ToList();
 

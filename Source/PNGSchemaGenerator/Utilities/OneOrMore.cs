@@ -18,7 +18,7 @@
             }
             else
             {
-                Collection = null;
+                Collection = new[] { item };
                 HasOne = true;
             }
         }
@@ -43,16 +43,6 @@
         public int Count => Collection?.Length ?? 0;
         public bool HasOne { get; }
         public bool HasMany => Collection?.Length > 1;
-
-        public object Value
-        {
-            get
-            {
-                if (HasOne)
-                    return Collection.FirstOrDefault();
-                return Collection;
-            }
-        }
 
         public static implicit operator OneOrMore<T>(T item) => new OneOrMore<T>(item);
         public static implicit operator OneOrMore<T>(T[] array) => new OneOrMore<T>(array);

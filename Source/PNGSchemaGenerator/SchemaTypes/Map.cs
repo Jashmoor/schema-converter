@@ -1,5 +1,6 @@
 ﻿namespace PNGSchemaGenerator.SchemaTypes
 {
+    using Newtonsoft.Json;
     using PNGSchemaGenerator.Constants;
     using PNGSchemaGenerator.Utilities;
     using System.Runtime.Serialization;
@@ -14,6 +15,7 @@
         /// Enum type MapCategoryType
         /// </summary>
         [DataMember(Name = "mapType", Order = 2)]
+        [JsonConverter(typeof(SchemaJsonConverter))]
         public OneOrMore<MapCategoryType?> MapType { get; set; }
     }
 }

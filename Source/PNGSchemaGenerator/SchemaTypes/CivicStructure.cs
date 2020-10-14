@@ -1,5 +1,6 @@
 ﻿namespace PNGSchemaGenerator.SchemaTypes
 {
+    using Newtonsoft.Json;
     using PNGSchemaGenerator.Utilities;
     using System.Runtime.Serialization;
 
@@ -10,6 +11,7 @@
         public override string Type => "CivicStructure";
 
         [DataMember(Name = "openinghours", Order = 2)]
+        [JsonConverter(typeof(SchemaJsonConverter))]
         public OneOrMore<string> OpeningHours { get; set; }
     }
 }

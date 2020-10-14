@@ -1,5 +1,6 @@
 ﻿namespace PNGSchemaGenerator.SchemaTypes
 {
+    using Newtonsoft.Json;
     using PNGSchemaGenerator.Utilities;
     using System.Runtime.Serialization;
 
@@ -10,6 +11,7 @@
         public override string Type => "QuantitativeAmountDistribution";
 
         [DataMember(Name = "median", Order = 2)]
+        [JsonConverter(typeof(SchemaJsonConverter))]
         public OneOrMore<double?> Median { get; set; }
     }
 }

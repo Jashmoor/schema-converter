@@ -2,6 +2,7 @@
 {
     using Newtonsoft.Json;
     using System;
+    using System.Collections;
 
     public class SchemaJsonConverter : JsonConverter
     {
@@ -14,39 +15,26 @@
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            if (typeof(string) == value.GetType())
-            {
-                WriteObject(writer, value, serializer);
-                return;
-            }
-
             var values = (IValues)value;
             if (values.Count == 0)
             {
                 serializer.Serialize(writer, null);
             }
-            else if (values.Count == 1)
+            if (values.Count == 1)
             {
-                var enumerator = values.GetEnumerator();
+                IEnumerator enumerator = values.GetEnumerator();
                 enumerator.MoveNext();
-                WriteObject(writer, enumerator.Current, serializer);
+                serializer.Serialize(writer, enumerator.Current);
             }
-            else
+            if (values.Count > 1)
             {
                 writer.WriteStartArray();
                 foreach (var item in values)
                 {
-                    WriteObject(writer, item, serializer);
+                    serializer.Serialize(writer, item);
                 }
-
                 writer.WriteEndArray();
             }
         }
-
-        public virtual void WriteObject(JsonWriter writer, object value, JsonSerializer serializer)
-        {
-            serializer.Serialize(writer, value);
-        }
-
     }
 }

@@ -42,12 +42,15 @@
         public Either<CreativeWork, Uri> MainEntityOfPage { get; set; }
 
         [DataMember(Name = "potentialAction", Order = 14)]
+        [JsonConverter(typeof(SchemaJsonConverter))]
         public OneOrMore<Action> PotentialAction { get; set; }
 
         [DataMember(Name = "sameAs", Order = 15)]
+        [JsonConverter(typeof(SchemaJsonConverter))]
         public OneOrMore<Uri> SameAs { get; set; }
 
         [DataMember(Name = "url", Order = 17)]
+        [JsonConverter(typeof(SchemaJsonConverter))]
         public OneOrMore<Uri> Url { get; set; }
 
         #region Methods
@@ -57,10 +60,16 @@
             NullValueHandling = NullValueHandling.Ignore,
             ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
             DateFormatHandling = DateFormatHandling.IsoDateFormat,
-            StringEscapeHandling = StringEscapeHandling.EscapeHtml
+            StringEscapeHandling = StringEscapeHandling.EscapeHtml,
+            DefaultValueHandling = DefaultValueHandling.Ignore
         };
 
         public override string ToString() => JsonConvert.SerializeObject(this, _Settings);
+
+        public string InjectHtml()
+        {
+            return string.Format(@"<script type=""application/ld+json""></script>", this.ToString());
+        }
         #endregion
     }
 }

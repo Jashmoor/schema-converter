@@ -1,5 +1,7 @@
 ﻿namespace PNGSchemaGenerator.SchemaTypes
 {
+    using Newtonsoft.Json;
+    using PNGSchemaGenerator.Utilities;
     using System;
     using System.Runtime.Serialization;
 
@@ -7,6 +9,7 @@
     public abstract class JsonBaseObject
     {
         [DataMember(Name = "@context", Order = 0)]
+        [JsonConverter(typeof(SchemaContextConverter))]
         public virtual JsonBaseContext Context { get; internal set; } = new JsonBaseContext();
 
         [DataMember(Name = "@type", Order = 1)]

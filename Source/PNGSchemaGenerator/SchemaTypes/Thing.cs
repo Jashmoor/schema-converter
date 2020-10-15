@@ -6,6 +6,7 @@
     using System;
     using System.Collections.Generic;
     using System.Runtime.Serialization;
+    using System.Text;
 
     [DataContract]
     public partial class Thing : JsonBaseObject
@@ -64,7 +65,21 @@
             DefaultValueHandling = DefaultValueHandling.Ignore
         };
 
-        public override string ToString() => JsonConvert.SerializeObject(this, _Settings);
+        public override string ToString() => RemoveMultipleContext(JsonConvert.SerializeObject(this, _Settings));
+
+        private static string RemoveMultipleContext(string json)
+        {
+            const string _Context = "\"@context\":\"https://schema.org\",";
+
+            if (json.IndexOf(_Context, StringComparison.Ordinal) != -1)
+            {
+                StringBuilder stringBuilder = new StringBuilder(json);
+                int startIndex = _Context.Length + 1;
+                stringBuilder.Replace(_Context, string.Empty, startIndex, stringBuilder.Length - startIndex);
+                return stringBuilder.ToString();
+            }
+            return json;
+        }
 
         public string InjectHtml()
         {
